@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+<title>✨ Волшебная Баночка Для Ульяны ✨</title>
+
+<style>
+
+:root{
+    --pink-primary:#ffb6c1;
+    --pink-dark:#ff69b4;
+    --pink-light:#fff0f5;
+    --accent-purple:#db7093;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
+    background:linear-gradient(135deg,var(--pink-light) 0%,#ffe4e1 100%);
+    min-height:100vh;
+    overflow-x:hidden;
+    display:flex;
+    justify-content:center;
+    align-items:flex-start;
+    position:relative;
+    padding:20px 0 120px;
+}
+
+/* Фон */
+
+body::before{
+    content:'';
+    position:fixed;
+    inset:-50%;
+    background:
+    radial-gradient(circle,
+    rgba(255,255,255,0.4) 0%,
+    transparent 60%);
+    animation:bgMove 18s linear infinite;
+    z-index:0;
+}
+
+@keyframes bgMove{
+
+    0%{
+        transform:rotate(0deg);
+    }
+
+    100%{
+        transform:rotate(360deg);
+    }
+}
+
+/* Контейнер */
+
+.container{
+    width:100%;
+    max-width:650px;
+    position:relative;
+    z-index:10;
+    text-align:center;
+    padding:0 16px;
+}
+
+/* Заголовок */
+
+h1{
+    color:var(--pink-dark);
+    font-size:2.5rem;
+    line-height:1.25;
+    margin-top:10px;
+    text-shadow:
+    0 0 15px rgba(255,105,180,0.3);
+    animation:heartBeat 2s infinite;
+}
+
+.subtitle{
+    margin-top:12px;
+    margin-bottom:35px;
+    color:var(--accent-purple);
+    font-size:1.1rem;
+}
+
+/* Банка */
+
+.jar-container{
+    width:220px;
+    height:300px;
+    margin:auto;
+    position:relative;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.jar-container:hover{
+    transform:
+    scale(1.05)
+    rotate(-3deg);
+}
+
+.jar-container:active{
+    transform:scale(0.95);
+}
+
+.jar{
+    width:100%;
+    height:100%;
+    position:relative;
+    overflow:hidden;
+    border-radius:35px 35px 70px 70px;
+    border:4px solid white;
+    background:
+    rgba(255,255,255,0.35);
+
+    box-shadow:
+    0 0 20px rgba(255,105,180,0.3),
+    inset 0 0 25px rgba(255,255,255,0.7);
+
+    animation:glowJar 3s infinite alternate;
+}
+
+/* Крышка */
+
+.jar::before{
+    content:'';
+    position:absolute;
+    top:-18px;
+    left:50%;
+    transform:translateX(-50%);
+    width:130px;
+    height:25px;
+    background:var(--pink-primary);
+    border-radius:12px;
+    border:3px solid white;
+}
+
+/* Горлышко */
+
+.jar-neck{
+    position:absolute;
+    top:0;
+    left:50%;
+    transform:translateX(-50%);
+    width:100px;
+    height:18px;
+    background:
+    rgba(255,255,255,0.5);
+
+    border-left:4px solid white;
+    border-right:4px solid white;
+}
+
+/* Бантик */
+
+.ribbon{
+    position:absolute;
+    top:18px;
+    left:50%;
+    transform:translateX(-50%);
+    width:45px;
+    height:18px;
+    background:var(--pink-dark);
+    border-radius:5px;
+    z-index:2;
+}
+
+.ribbon::before,
+.ribbon::after{
+    content:'';
+    position:absolute;
+    width:28px;
+    height:28px;
+    background:var(--pink-dark);
+    border-radius:50%;
+    top:-5px;
+}
+
+.ribbon::before{
+    left:-18px;
+}
+
+.ribbon::after{
+    right:-18px;
+}
+
+/* Светлячки */
+
+.glow-bug{
+    position:absolute;
+    width:12px;
+    height:12px;
+    border-radius:50%;
+    background:white;
+
+    box-shadow:
+    0 0 15px white,
+    0 0 30px var(--pink-dark);
+
+    animation:
+    floatInside 4s infinite ease-in-out;
+}
+
+/* Карточки */
+
+.messages-container{
+    margin-top:35px;
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+    align-items:center;
+    width:100%;
+}
+
+/* Одна карточка */
+
+.message-card{
+    width:100%;
+    background:
+    rgba(255,255,255,0.88);
+
+    backdrop-filter:blur(10px);
+
+    border-radius:28px;
+
+    padding:18px;
+
+    border:
+    2px solid rgba(255,182,193,0.4);
+
+    box-shadow:
+    0 10px 30px rgba(255,105,180,0.12);
+
+    display:flex;
+    align-items:center;
+    gap:15px;
+
+    animation:showCard 0.6s ease;
+}
+
+/* Фото */
+
+.message-photo{
+    width:90px;
+    height:90px;
+    min-width:90px;
+    object-fit:cover;
+    border-radius:22px;
+    border:3px solid white;
+
+    box-shadow:
+    0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* Текст */
+
+.message-text{
+    text-align:left;
+    color:#444;
+    font-size:1.08rem;
+    line-height:1.5;
+}
+
+/* Сердечки */
+
+.heart-pop{
+    position:absolute;
+    font-size:24px;
+    pointer-events:none;
+    z-index:30;
+    animation:flyUp 1s ease-out forwards;
+}
+
+/* Лепестки */
+
+.petal{
+    position:fixed;
+    top:-20px;
+    font-size:22px;
+    pointer-events:none;
+    z-index:5;
+    animation:fall linear forwards;
+}
+
+/* Canvas */
+
+canvas{
+    position:fixed;
+    inset:0;
+    width:100%;
+    height:100%;
+    pointer-events:none;
+    z-index:1;
+}
+
+/* АНИМАЦИИ */
+
+@keyframes glowJar{
+
+    from{
+        box-shadow:
+        0 0 20px rgba(255,105,180,0.2),
+        inset 0 0 25px rgba(255,255,255,0.7);
+    }
+
+    to{
+        box-shadow:
+        0 0 45px rgba(255,105,180,0.7),
+        inset 0 0 35px rgba(255,255,255,0.8);
+    }
+}
+
+@keyframes heartBeat{
+
+    0%{
+        transform:scale(1);
+    }
+
+    50%{
+        transform:scale(1.04);
+    }
+
+    100%{
+        transform:scale(1);
+    }
+}
+
+@keyframes floatInside{
+
+    0%,100%{
+        transform:translate(0,0);
+        opacity:0.6;
+    }
+
+    50%{
+        transform:
+        translate(15px,-30px);
+
+        opacity:1;
+    }
+}
+
+@keyframes flyUp{
+
+    0%{
+        transform:
+        translate(-50%,-50%)
+        scale(0.5);
+
+        opacity:1;
+    }
+
+    100%{
+        transform:
+        translate(calc(-50% + var(--x)),
+        calc(-50% - 120px))
+        scale(1.5);
+
+        opacity:0;
+    }
+}
+
+@keyframes fall{
+
+    to{
+        transform:
+        translateY(110vh)
+        rotate(360deg);
+
+        opacity:0;
+    }
+}
+
+@keyframes showCard{
+
+    from{
+        opacity:0;
+
+        transform:
+        translateY(20px)
+        scale(0.95);
+    }
+
+    to{
+        opacity:1;
+
+        transform:
+        translateY(0)
+        scale(1);
+    }
+}
+
+@media(max-width:600px){
+
+    body{
+        padding-top:10px;
+    }
+
+    h1{
+        font-size:1.9rem;
+    }
+
+    .subtitle{
+        font-size:1rem;
+        margin-bottom:25px;
+    }
+
+    .jar-container{
+        width:180px;
+        height:250px;
+    }
+
+    .message-card{
+        padding:14px;
+        border-radius:22px;
+        gap:12px;
+    }
+
+    .message-photo{
+        width:72px;
+        height:72px;
+        min-width:72px;
+        border-radius:18px;
+    }
+
+    .message-text{
+        font-size:0.97rem;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<audio id="bgMusic" loop>
+<source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<canvas id="fireworks"></canvas>
+
+<div class="container">
+
+<h1>
+✨ Волшебная Баночка Для Ульяны ✨
+</h1>
+
+<p class="subtitle">
+Нажми на баночку и получай милые записки 💖
+</p>
+
+<div class="jar-container" id="jar">
+
+<div class="jar-neck"></div>
+
+<div class="ribbon"></div>
+
+<div class="jar">
+
+<div class="glow-bug"
+style="top:35%; left:30%; animation-delay:0s;">
+</div>
+
+<div class="glow-bug"
+style="top:60%; left:65%; animation-delay:1s;">
+</div>
+
+<div class="glow-bug"
+style="top:25%; left:70%; animation-delay:2s;">
+</div>
+
+<div class="glow-bug"
+style="top:70%; left:20%; animation-delay:1.5s;">
+</div>
+
+</div>
+</div>
+
+<div class="messages-container"
+id="messagesContainer">
+</div>
+
+</div>
+
+<script>
+
+/* 10 комплиментов + 10 фото */
+
+const compliments = [
+
+{
+    text:"Ты как весна — делаешь всё вокруг красивее 🌸",
+    photo:"photo1.jpg"
+},
+
+{
+    text:"Твоя улыбка реально спасает плохие дни 💖",
+    photo:"photo2.jpg"
+},
+
+{
+    text:"Если бы счастье было человеком — это была бы ты ✨",
+    photo:"photo3.jpg"
+},
+
+{
+    text:"Ты заслуживаешь самые красивые моменты в жизни 🥺",
+    photo:"photo4.jpg"
+},
+
+{
+    text:"Спасибо, что ты есть 🌷",
+    photo:"photo5.jpg"
+},
+
+{
+    text:"С тобой даже обычный день становится особенным 💫",
+    photo:"photo6.jpg"
+},
+
+{
+    text:"Ты очень милая, и это факт 💕",
+    photo:"photo7.jpg"
+},
+
+{
+    text:"Иногда одного твоего сообщения хватает для хорошего настроения 😊",
+    photo:"photo8.jpg"
+},
+
+{
+    text:"Ты словно маленькое чудо ✨",
+    photo:"photo9.jpg"
+},
+
+{
+    text:"Мир был бы намного скучнее без тебя 💗",
+    photo:"photo10.jpg"
+}
+
+];
+
+const jar =
+document.getElementById('jar');
+
+const messagesContainer =
+document.getElementById('messagesContainer');
+
+const canvas =
+document.getElementById('fireworks');
+
+const ctx =
+canvas.getContext('2d');
+
+/* Размер canvas */
+
+function resizeCanvas(){
+
+    canvas.width =
+    window.innerWidth;
+
+    canvas.height =
+    window.innerHeight;
+}
+
+window.addEventListener(
+'resize',
+resizeCanvas
+);
+
+resizeCanvas();
+
+/* Частицы */
+
+let particles = [];
+
+class Particle{
+
+    constructor(x,y){
+
+        this.x = x;
+
+        this.y = y;
+
+        this.size =
+        Math.random() * 4 + 2;
+
+        this.speedX =
+        (Math.random() - 0.5) * 6;
+
+        this.speedY =
+        (Math.random() - 0.5) * 6 - 2;
+
+        this.color =
+        `hsl(${Math.random() * 40 + 330},100%,75%)`;
+
+        this.alpha = 1;
+
+        this.decay =
+        Math.random() * 0.015 + 0.01;
+    }
+
+    update(){
+
+        this.x += this.speedX;
+
+        this.y += this.speedY;
+
+        this.speedY += 0.05;
+
+        this.alpha -= this.decay;
+    }
+
+    draw(){
+
+        ctx.save();
+
+        ctx.globalAlpha =
+        this.alpha;
+
+        ctx.fillStyle =
+        this.color;
+
+        ctx.beginPath();
+
+        ctx.arc(
+        this.x,
+        this.y,
+        this.size,
+        0,
+        Math.PI * 2
+        );
+
+        ctx.fill();
+
+        ctx.restore();
+    }
+}
+
+function animate(){
+
+    ctx.clearRect(
+    0,
+    0,
+    canvas.width,
+    canvas.height
+    );
+
+    particles =
+    particles.filter(
+    p => p.alpha > 0
+    );
+
+    particles.forEach(p => {
+
+        p.update();
+
+        p.draw();
+    });
+
+    requestAnimationFrame(animate);
+}
+
+animate();
+
+/* Музыка */
+
+let musicStarted = false;
+
+const music =
+document.getElementById('bgMusic');
+
+music.volume = 0.3;
+
+/* КЛИК */
+
+jar.addEventListener('click', () => {
+
+    if(!musicStarted){
+
+        music.volume = 0;
+
+        music.play();
+
+        let fade = setInterval(() => {
+
+            if(music.volume < 0.3){
+
+                music.volume += 0.02;
+
+            }else{
+
+                clearInterval(fade);
+            }
+
+        },200);
+
+        musicStarted = true;
+    }
+
+    const randomIndex =
+    Math.floor(
+    Math.random() *
+    compliments.length
+    );
+
+    const selected =
+    compliments[randomIndex];
+
+    const text =
+    selected.text;
+
+    /* Карточка */
+
+    const card =
+    document.createElement('div');
+
+    card.classList.add('message-card');
+
+    /* Фото */
+
+    const photo =
+    document.createElement('img');
+
+    photo.classList.add('message-photo');
+
+    photo.src =
+    selected.photo;
+
+    /* Текст */
+
+    const message =
+    document.createElement('div');
+
+    message.classList.add('message-text');
+
+    card.appendChild(photo);
+
+    card.appendChild(message);
+
+    messagesContainer.prepend(card);
+
+    /* Печатающийся текст */
+
+    let i = 0;
+
+    function typeWriter(){
+
+        if(i < text.length){
+
+            message.innerHTML +=
+            text.charAt(i);
+
+            i++;
+
+            setTimeout(
+            typeWriter,
+            30
+            );
+        }
+    }
+
+    typeWriter();
+
+    /* Салют */
+
+    const rect =
+    jar.getBoundingClientRect();
+
+    const jarCenterX =
+    rect.left + rect.width / 2;
+
+    const jarCenterY =
+    rect.top + rect.height / 3;
+
+    for(let i = 0; i < 35; i++){
+
+        particles.push(
+        new Particle(
+        jarCenterX,
+        jarCenterY
+        )
+        );
+    }
+
+    createHeart(
+    jarCenterX,
+    rect.top
+    );
+
+    createPetals();
+});
+
+/* Сердце */
+
+function createHeart(x,y){
+
+    const heart =
+    document.createElement('div');
+
+    heart.classList.add('heart-pop');
+
+    heart.innerHTML = '💖';
+
+    heart.style.left =
+    x + 'px';
+
+    heart.style.top =
+    y + 'px';
+
+    const randomX =
+    (Math.random() - 0.5)
+    * 100 + 'px';
+
+    heart.style.setProperty(
+    '--x',
+    randomX
+    );
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+
+        heart.remove();
+
+    },1000);
+}
+
+/* Лепестки */
+
+function createPetals(){
+
+    for(let i = 0; i < 8; i++){
+
+        const petal =
+        document.createElement('div');
+
+        petal.classList.add('petal');
+
+        petal.innerHTML = '🌸';
+
+        petal.style.left =
+        Math.random()
+        * window.innerWidth + 'px';
+
+        petal.style.animationDuration =
+        (Math.random() * 3 + 4)
+        + 's';
+
+        document.body.appendChild(petal);
+
+        setTimeout(() => {
+
+            petal.remove();
+
+        },7000);
+    }
+}
+
+</script>
+
+</body>
+</html>
